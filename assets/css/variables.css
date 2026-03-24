@@ -1,0 +1,84 @@
+/* ===========================
+   variables.css
+   Design tokens & CSS custom properties
+   =========================== */
+
+   :root {
+    /* ── Gradient Backgrounds ── */
+    --bg-gradient-onyx:     linear-gradient(to bottom right, hsl(240, 1%, 25%) 3%, hsl(0, 0%, 19%) 97%);
+    --bg-gradient-jet:      linear-gradient(to bottom right, hsla(240, 1%, 18%, .251) 3%, hsla(240, 2%, 11%, 0) 100%), hsl(240, 2%, 13%);
+    --bg-gradient-yellow1:  linear-gradient(to bottom right, hsl(45, 100%, 71%) 0%, hsla(36, 100%, 69%, 0) 50%);
+    --bg-gradient-yellow2:  linear-gradient(135deg, hsla(45, 100%, 71%, .251) 0%, hsla(35, 100%, 68%, 0) 59.86%), hsl(240, 2%, 13%);
+    --border-gradient-onyx: linear-gradient(to bottom right, hsl(0, 0%, 25%) 0%, hsla(0, 0%, 25%, 0) 50%);
+    --text-gradient-yellow: linear-gradient(to right, hsl(45, 100%, 72%), hsl(35, 100%, 68%));
+
+    /* Nuevos degradados de profundidad */
+    --bg-gradient-dark:     linear-gradient(160deg, hsl(240, 2%, 16%) 0%, hsl(240, 2%, 10%) 100%);
+    --bg-gradient-card:     linear-gradient(145deg, hsla(240, 2%, 18%, .9) 0%, hsla(240, 2%, 12%, .95) 100%);
+    --glow-yellow:          0 0 20px hsla(45, 100%, 72%, .18), 0 0 60px hsla(45, 100%, 72%, .06);
+    --glow-yellow-strong:   0 0 30px hsla(45, 100%, 72%, .35), 0 0 80px hsla(45, 100%, 72%, .12);
+
+    /* ── Base Colors ── */
+    --jet:                   hsl(0, 0%, 22%);
+    --jet-light:             hsl(0, 0%, 28%);
+    --onyx:                  hsl(240, 1%, 17%);
+    --eerie-black1:          hsl(240, 2%, 13%);
+    --eerie-black2:          hsl(240, 2%, 12%);
+    --eerie-black3:          hsl(240, 2%, 9%);
+    --smoky-black:           hsl(0, 0%, 7%);
+    --white1:                hsl(0, 0%, 100%);
+    --white2:                hsl(0, 0%, 98%);
+    --orange-yellow-crayola: hsl(45, 100%, 72%);
+    --orange-yellow-dim:     hsla(45, 100%, 72%, .65);
+    --vegas-gold:            hsl(45, 54%, 58%);
+    --light-gray:            hsl(0, 0%, 84%);
+    --light-gray70:          hsla(0, 0%, 84%, .7);
+    --light-gray40:          hsla(0, 0%, 84%, .4);
+    --bittersweet-shimmer:   hsl(0, 43%, 51%);
+    --success-green:         hsl(142, 60%, 50%);
+
+    /* ── Typography ── */
+    --ff-poppins: 'Poppins', sans-serif;
+
+    --fs1: 24px;
+    --fs2: 18px;
+    --fs3: 17px;
+    --fs4: 16px;
+    --fs5: 15px;
+    --fs6: 14px;
+    --fs7: 13px;
+    --fs8: 12px;
+
+    --fw300: 300;
+    --fw400: 400;
+    --fw500: 500;
+    --fw600: 600;
+    --fw700: 700;
+
+    /* ── Shadows ── */
+    --shadow1: -4px 8px 24px hsla(0, 0%, 0%, .25);
+    --shadow2:  0px 16px 30px hsla(0, 0%, 0%, .25);
+    --shadow3:  0px 16px 40px hsla(0, 0%, 0%, .25);
+    --shadow4:  0px 25px 50px hsla(0, 0%, 0%, .15);
+    --shadow5:  0px 24px 80px hsla(0, 0%, 0%, .25);
+    --shadow-inset: inset 0 1px 0 hsla(0, 0%, 100%, .06), inset 0 -1px 0 hsla(0, 0%, 0%, .25);
+
+    /* ── Transitions ── */
+    --transition1:       .25s ease;
+    --transition2:       .5s ease-in-out;
+    --transition-bounce: .35s cubic-bezier(.34, 1.56, .64, 1);
+    --transition-smooth: .4s cubic-bezier(.25, .46, .45, .94);
+
+    /* ── Border Radii ── */
+    --radius-sm:  8px;
+    --radius-md:  14px;
+    --radius-lg:  20px;
+    --radius-xl:  28px;
+    --radius-pill: 100px;
+
+    /* ── Spacing ── */
+    --gap-xs:   8px;
+    --gap-sm:   12px;
+    --gap-md:   20px;
+    --gap-lg:   30px;
+}

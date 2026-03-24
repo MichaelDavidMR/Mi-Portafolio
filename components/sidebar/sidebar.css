@@ -1,0 +1,257 @@
+/* ===========================
+   sidebar.css
+   =========================== */
+
+   .sidebar {
+    margin-bottom: 15px;
+    max-height: 112px;
+    overflow: hidden;
+    padding: 15px;
+    transition: max-height var(--transition2), box-shadow var(--transition1);
+    position: relative;
+}
+/* Resplandor ambiental en la barra lateral */
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 80px;
+    background: radial-gradient(ellipse, hsla(45, 100%, 72%, .08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+.sidebar.active {
+    max-height: 500px;
+    box-shadow: var(--shadow2), 0 0 60px hsla(0, 0%, 0%, .4);
+}
+
+/* ── Sidebar info ── */
+.sidebar-info {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    z-index: 1;
+}
+
+/* ── Avatar ── */
+.avatar-box {
+    background: var(--bg-gradient-onyx);
+    border-radius: 20px;
+    position: relative;
+    flex-shrink: 0;
+    transition: var(--transition-bounce);
+}
+/* Anillo animado alrededor del avatar */
+.avatar-box::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from 0deg,
+        var(--orange-yellow-crayola),
+        var(--vegas-gold),
+        transparent 60%,
+        var(--orange-yellow-crayola)
+    );
+    opacity: 0;
+    transition: opacity var(--transition1);
+    animation: spin-ring 4s linear infinite;
+    z-index: -1;
+}
+.avatar-box::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: var(--eerie-black2);
+    z-index: -1;
+}
+.sidebar:hover .avatar-box::before { opacity: 1; }
+.avatar-box:hover { transform: scale(1.04); }
+
+@keyframes spin-ring {
+    to { transform: rotate(360deg); }
+}
+.avatar-box img {
+    position: relative;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+/* ── Info content ── */
+.info-content .name {
+    color: var(--white2);
+    font-size: var(--fs3);
+    font-weight: var(--fw500);
+    letter-spacing: -0.25px;
+    margin-bottom: 10px;
+    /* Gradiente de texto sutil */
+    background: linear-gradient(to right, var(--white2) 60%, var(--light-gray70));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.info-content .title {
+    color: var(--white1);
+    background: var(--onyx);
+    font-size: var(--fs8);
+    font-weight: var(--fw300);
+    width: max-content;
+    padding: 3px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--jet);
+    letter-spacing: .5px;
+    position: relative;
+    overflow: hidden;
+}
+/* Brillo deslizante en el badge de título */
+.info-content .title::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, .08), transparent);
+    animation: title-shine 3s ease-in-out infinite;
+}
+@keyframes title-shine {
+    0%   { left: -100%; }
+    50%, 100% { left: 150%; }
+}
+
+/* ── Botón "más info" ── */
+.info-more-btn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    border-radius: 0 15px;
+    font-size: 13px;
+    color: var(--orange-yellow-crayola);
+    background: var(--border-gradient-onyx);
+    padding: 10px;
+    box-shadow: var(--shadow2);
+    transition: var(--transition1);
+    z-index: 1;
+}
+.info-more-btn::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: var(--bg-gradient-jet);
+    transition: var(--transition1);
+    z-index: -1;
+}
+.info-more-btn:hover,
+.info-more-btn:focus {
+    background: var(--bg-gradient-yellow1);
+    box-shadow: var(--shadow2), var(--glow-yellow);
+}
+.info-more-btn:hover::before,
+.info-more-btn:focus::before { background: var(--bg-gradient-yellow2); }
+.info-more-btn:active { transform: scale(.95); }
+.info-more-btn span { display: none; }
+
+/* ── Sidebar info more (expandible) ── */
+.sidebar-info-more {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--transition2), visibility var(--transition2), transform var(--transition2);
+}
+.sidebar.active .sidebar-info-more {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ── Lista de contactos ── */
+.contacts-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.contact-item {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition1);
+}
+.contact-item:hover { background: hsla(0, 0%, 100%, .03); }
+
+.contact-info {
+    max-width: calc(100% - 46px);
+    width: calc(100% - 46px);
+}
+.contact-info :is(.contact-link, span, address) {
+    color: var(--white2);
+    font-size: var(--fs7);
+    transition: color var(--transition1);
+}
+.contact-info .contact-link:hover { color: var(--orange-yellow-crayola); }
+.contact-info address { font-style: normal; }
+
+.contact-title {
+    color: var(--light-gray70);
+    font-size: var(--fs8);
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-bottom: 2px;
+}
+
+/* ── Fila de iconos sociales ── */
+.social-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0 8px;
+}
+
+.social-item .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--eerie-black1);
+    color: var(--clr, var(--light-gray));
+    font-size: 1rem;
+    border: 1px solid var(--jet);
+    transition: var(--transition-bounce);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+/* Efecto ripple de fondo */
+.social-item .social-link::before {
+    content: '';
+    position: absolute;
+    inset: 100%;
+    background: var(--clr, var(--orange-yellow-crayola));
+    border-radius: 50%;
+    opacity: .15;
+    transition: inset .4s ease;
+}
+.social-item .social-link:hover::before { inset: -10%; }
+.social-item .social-link:hover {
+    background: var(--clr, var(--orange-yellow-crayola));
+    color: var(--smoky-black);
+    border-color: var(--clr, var(--orange-yellow-crayola));
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 8px 20px hsla(0,0%,0%,.4), 0 0 20px hsla(45,100%,72%,.2);
+}
+.social-item .social-link:active { transform: translateY(-1px) scale(1.02); }

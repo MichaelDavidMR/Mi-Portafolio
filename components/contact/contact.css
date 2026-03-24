@@ -1,0 +1,186 @@
+/* ===========================
+   contact.css
+   =========================== */
+
+   .mapbox {
+    position: relative;
+    height: 250px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    margin-bottom: 30px;
+    border: 1px solid var(--jet);
+    overflow: hidden;
+    box-shadow: var(--shadow2);
+    transition: box-shadow var(--transition1), border-color var(--transition1);
+}
+.mapbox:hover {
+    border-color: var(--jet-light);
+    box-shadow: var(--shadow3), 0 0 40px hsla(0, 0%, 0%, .3);
+}
+/* Gradiente de vignette sobre el mapa */
+.mapbox::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        hsla(0, 0%, 0%, .12) 0%,
+        transparent 30%,
+        transparent 70%,
+        hsla(0, 0%, 0%, .25) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+.mapbox figure { height: 100%; }
+.mapbox iframe {
+    width: 100%; height: 100%;
+    border: none;
+    filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.85) contrast(1.1);
+    transition: filter var(--transition2);
+}
+.mapbox:hover iframe { filter: grayscale(.6) invert(1) hue-rotate(180deg) brightness(.9) contrast(1.1); }
+
+/* ── Formulario ── */
+.contact-form { margin-bottom: 10px; }
+
+.form-title {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.input-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+/* Wrapper de campo con label flotante */
+.field-group {
+    position: relative;
+}
+.field-group label {
+    position: absolute;
+    top: 13px;
+    left: 20px;
+    color: var(--light-gray70);
+    font-size: var(--fs7);
+    pointer-events: none;
+    transition: top .2s ease, font-size .2s ease, color .2s ease;
+    background: transparent;
+}
+.field-group .form-input:focus ~ label,
+.field-group .form-input:not(:placeholder-shown) ~ label {
+    top: -9px;
+    font-size: var(--fs8);
+    color: var(--orange-yellow-crayola);
+    background: var(--eerie-black2);
+    padding: 0 6px;
+    border-radius: 4px;
+}
+
+.form-input {
+    color: var(--white2);
+    font-size: var(--fs6);
+    font-weight: var(--fw400);
+    padding: 13px 20px;
+    border: 1px solid var(--jet);
+    border-radius: var(--radius-md);
+    outline: none;
+    background: hsla(0, 0%, 100%, .025);
+    transition: border-color var(--transition1), background var(--transition1), box-shadow var(--transition1);
+}
+.form-input::placeholder {
+    color: var(--light-gray40);
+    font-weight: var(--fw400);
+}
+.form-input:hover { border-color: var(--jet-light); }
+.form-input:focus {
+    border-color: var(--orange-yellow-crayola);
+    background: hsla(45, 100%, 72%, .03);
+    box-shadow: 0 0 0 3px hsla(45, 100%, 72%, .1), inset 0 1px 0 hsla(0, 0%, 100%, .04);
+}
+.form-input:focus:invalid {
+    border-color: var(--bittersweet-shimmer);
+    box-shadow: 0 0 0 3px hsla(0, 43%, 51%, .12);
+}
+
+textarea.form-input {
+    min-height: 100px;
+    height: 120px;
+    max-height: 200px;
+    resize: vertical;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* ── Botón enviar ── */
+.form-btn {
+    position: relative;
+    width: 100%;
+    background: var(--border-gradient-onyx);
+    color: var(--orange-yellow-crayola);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 20px;
+    border-radius: var(--radius-md);
+    font-size: var(--fs6);
+    font-weight: var(--fw500);
+    text-transform: capitalize;
+    box-shadow: var(--shadow3);
+    z-index: 1;
+    transition: var(--transition1);
+    letter-spacing: .3px;
+    overflow: hidden;
+}
+.form-btn::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--bg-gradient-jet);
+    border-radius: inherit;
+    z-index: -1;
+    transition: var(--transition1);
+}
+/* Efecto de brillo al pasar el cursor */
+.form-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, .06), transparent);
+    transition: left .5s ease;
+    z-index: 0;
+}
+.form-btn:hover::after { left: 150%; }
+.form-btn ion-icon {
+    font-size: 16px;
+    transition: transform var(--transition-bounce);
+}
+.form-btn:hover {
+    background: var(--bg-gradient-yellow1);
+    box-shadow: var(--shadow3), var(--glow-yellow);
+    transform: translateY(-2px);
+}
+.form-btn:hover::before { background: var(--bg-gradient-yellow2); }
+.form-btn:hover ion-icon { transform: translateX(4px) rotate(-10deg); }
+.form-btn:active { transform: translateY(0); }
+
+.form-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Estado de éxito del formulario */
+.form-btn.success {
+    background: hsla(142, 60%, 40%, .3);
+    color: var(--success-green);
+    border: 1px solid hsla(142, 60%, 40%, .3);
+    pointer-events: none;
+}
+.form-btn.success::before { background: hsla(142, 60%, 10%, .5); }

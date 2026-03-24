@@ -1,0 +1,85 @@
+/* ===========================
+   navbar.css
+   =========================== */
+
+   .navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: hsla(240, 2%, 13%, .80);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid hsla(0, 0%, 100%, .06);
+    border-bottom: none;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 32px hsla(0, 0%, 0%, .35),
+                inset 0 1px 0 hsla(0, 0%, 100%, .07);
+    z-index: 5;
+    transition: background var(--transition1);
+}
+
+.navbar-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    gap: 0;
+}
+
+.navbar-link {
+    position: relative;
+    color: var(--light-gray40);
+    font-size: var(--fs8);
+    padding: 20px 10px;
+    transition: color var(--transition1);
+    letter-spacing: .3px;
+    font-weight: var(--fw500);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+/* Línea activa animada */
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 20px;
+    height: 2px;
+    background: var(--text-gradient-yellow);
+    border-radius: 2px;
+    box-shadow: 0 0 8px hsla(45, 100%, 72%, .5);
+    transition: transform var(--transition-bounce);
+}
+.navbar-link:hover { color: var(--light-gray70); }
+.navbar-link:hover::after { transform: translateX(-50%) scaleX(.5); }
+.navbar-link.active {
+    color: var(--orange-yellow-crayola);
+    text-shadow: 0 0 20px hsla(45, 100%, 72%, .3);
+}
+.navbar-link.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+/* Indicador puntual en la parte superior */
+.navbar-link.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--orange-yellow-crayola);
+    box-shadow: var(--glow-yellow);
+    animation: nav-dot-in .3s ease both;
+}
+@keyframes nav-dot-in {
+    from { opacity: 0; transform: translateX(-50%) scale(0); }
+    to   { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+.navbar-link:active { transform: scale(.93); }

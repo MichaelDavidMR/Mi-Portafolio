@@ -1,0 +1,284 @@
+/* ===========================
+   base.css
+   Reset, globals & shared utilities
+   =========================== */
+
+   *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a              { text-decoration: none; }
+li             { list-style: none; }
+img, ion-icon, a, button, time, span { display: block; }
+
+button {
+    font: inherit;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    background: none;
+    font: inherit;
+}
+
+::selection {
+    background: var(--orange-yellow-crayola);
+    color: var(--smoky-black);
+}
+
+:focus-visible {
+    outline: 2px solid var(--orange-yellow-crayola);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+html { font-family: var(--ff-poppins); scroll-behavior: smooth; }
+body {
+    background: var(--smoky-black);
+    /* Textura sutil de grano */
+    background-image:
+        radial-gradient(ellipse at 20% 20%, hsla(45, 60%, 30%, .04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, hsla(240, 40%, 20%, .06) 0%, transparent 60%);
+    min-height: 100vh;
+}
+
+/* ── Cursor personalizado ── */
+* { cursor: default; }
+a, button, [role="button"], label[for] { cursor: pointer; }
+
+/* ── Layout ── */
+main {
+    margin: 15px 12px;
+    margin-bottom: 75px;
+    min-width: 259px;
+}
+
+/* ── Shared card / panel styles ── */
+.sidebar, article {
+    background: var(--eerie-black2);
+    border: 1px solid var(--jet);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow1);
+    z-index: 1;
+    padding: 15px;
+    /* Brillo interno sutil en borde superior */
+    box-shadow: var(--shadow1), inset 0 1px 0 hsla(0, 0%, 100%, .05);
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--jet), transparent);
+    margin: 16px 0;
+    border: none;
+}
+
+/* ── Icon box ── */
+.icon-box {
+    position: relative;
+    background: var(--border-gradient-onyx);
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: var(--orange-yellow-crayola);
+    box-shadow: var(--shadow1);
+    z-index: 1;
+    transition: var(--transition-bounce);
+}
+.icon-box::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--eerie-black1);
+    border-radius: inherit;
+    z-index: -1;
+    transition: var(--transition1);
+}
+.icon-box:hover {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: var(--shadow2), var(--glow-yellow);
+}
+.icon-box:hover::before { background: var(--bg-gradient-yellow2); }
+.icon-box ion-icon { --ionicon-stroke-width: 35px; }
+
+/* ── Articles (pages) ── */
+article { display: none; }
+article.active {
+    display: block;
+    animation: fadeSlideIn .45s cubic-bezier(.25, .46, .45, .94) both;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Headings ── */
+.h2, .h3, .h4, .h5 {
+    color: var(--white2);
+    text-transform: capitalize;
+}
+.h2 { font-size: var(--fs1); }
+.h3 { font-size: var(--fs2); }
+.h4 { font-size: var(--fs4); }
+.h5 { font-size: var(--fs7); font-weight: var(--fw500); }
+
+/* ── Article title con subrayado animado ── */
+.article-title {
+    position: relative;
+    padding-bottom: 7px;
+}
+.article-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--text-gradient-yellow);
+    border-radius: 3px;
+    box-shadow: 0 0 10px hsla(45, 100%, 72%, .4);
+    transition: width var(--transition-smooth);
+}
+.article-title:hover::after { width: 60px; }
+
+/* ── Scrollbar personalizado ── */
+.has-scrollbar::-webkit-scrollbar        { width: 5px; height: 5px; }
+.has-scrollbar::-webkit-scrollbar-track  {
+    background: var(--onyx);
+    border-radius: 5px;
+}
+.has-scrollbar::-webkit-scrollbar-thumb  {
+    background: linear-gradient(to bottom, var(--orange-yellow-crayola), var(--vegas-gold));
+    border-radius: 5px;
+}
+.has-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--orange-yellow-crayola);
+    box-shadow: 0 0 8px hsla(45, 100%, 72%, .5);
+}
+.has-scrollbar::-webkit-scrollbar-button { width: 20px; }
+
+/* ── Content card ── */
+.content-card {
+    position: relative;
+    background: var(--border-gradient-onyx);
+    padding: 15px;
+    padding-top: 45px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow2);
+    cursor: pointer;
+    z-index: 1;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+.content-card::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--bg-gradient-jet);
+    border-radius: inherit;
+    z-index: -1;
+    transition: background var(--transition1);
+}
+.content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow3), 0 0 40px hsla(0, 0%, 0%, .3);
+}
+.content-card:hover::before { background: var(--bg-gradient-card); }
+
+/* ── Skeleton / loading shimmer (utilidad) ── */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--eerie-black1) 25%,
+        var(--jet) 50%,
+        var(--eerie-black1) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-sm);
+}
+@keyframes shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+/* ── Badge / chip de estado ── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    font-size: var(--fs8);
+    font-weight: var(--fw500);
+    letter-spacing: .3px;
+    background: hsla(45, 100%, 72%, .12);
+    color: var(--orange-yellow-crayola);
+    border: 1px solid hsla(45, 100%, 72%, .2);
+}
+.badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--orange-yellow-crayola);
+    box-shadow: 0 0 6px var(--orange-yellow-crayola);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: .5; transform: scale(.7); }
+}
+
+/* ── Tooltip ── */
+[data-tooltip] {
+    position: relative;
+}
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--jet);
+    color: var(--white2);
+    font-size: var(--fs8);
+    font-family: var(--ff-poppins);
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--jet-light);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition1), transform var(--transition1);
+    z-index: 100;
+}
+[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+*, *::before, *::after {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23FFF" stroke="%23000" stroke-width="2" d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35Z"></path></svg>') 0 0, auto;
+}
+
+a, button, [role="button"], label[for], [tabindex], .project-card, .filter-item button, .navbar-link {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23FFB938" stroke="%23000" stroke-width="2" d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35Z"></path></svg>') 0 0, pointer;
+}
