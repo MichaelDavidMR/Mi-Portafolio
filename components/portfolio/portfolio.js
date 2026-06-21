@@ -2,7 +2,7 @@
    portfolio.js
    =========================== */
 
-   (function () {
+(function () {
 
     const projects = [
         {
@@ -25,6 +25,13 @@
             type: "Web App",
             img: "components/img/recibos.png",
             desc: "Sistema ERP para gestión de recibos, clientes y ventas con backend integrado y autenticación segura."
+        },
+        {
+            title: "MASLOP - Plataforma E-Commerce",
+            category: "web",
+            type: "Full Stack",
+            img: "components/img/maslop.png",
+            desc: "Plataforma e-commerce completa para ferretería con catálogo de productos, carrito de compras, gestión de inventario, sistema de pagos integrado y panel administrativo con reportes en tiempo real."
         }
     ];
 
@@ -115,10 +122,10 @@
     document.body.appendChild(_mw.firstElementChild);
 
     /* ─── FILTROS ──────────────────────────────────────── */
-    const select      = document.querySelector('[data-select]');
+    const select = document.querySelector('[data-select]');
     const selectItems = document.querySelectorAll('[data-select-item]');
     const selectValue = document.querySelector('[data-select-value]');
-    const filterBtns  = document.querySelectorAll('[data-filter-btn]');
+    const filterBtns = document.querySelectorAll('[data-filter-btn]');
     const filterItems = document.querySelectorAll('[data-filter-item]');
 
     const filterFunc = (value) => {
@@ -171,23 +178,23 @@
     });
 
     /* ─── MODAL ────────────────────────────────────────── */
-    const modal      = document.getElementById('project-modal');
-    const modalImg   = document.getElementById('modal-img');
-    const modalType  = document.getElementById('modal-type');
+    const modal = document.getElementById('project-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalType = document.getElementById('modal-type');
     const modalTitle = document.getElementById('modal-title');
-    const modalDesc  = document.getElementById('modal-desc');
-    const closeBtn   = document.getElementById('close-modal');
+    const modalDesc = document.getElementById('modal-desc');
+    const closeBtn = document.getElementById('close-modal');
 
     // Guardar el elemento que tenía el foco antes de abrir
     let triggerEl = null;
 
     const openModal = (p, trigger) => {
         triggerEl = trigger || null;
-        modalImg.src           = p.img;
-        modalImg.alt           = p.title;
-        modalType.textContent  = p.type;
+        modalImg.src = p.img;
+        modalImg.alt = p.title;
+        modalType.textContent = p.type;
         modalTitle.textContent = p.title;
-        modalDesc.textContent  = p.desc;
+        modalDesc.textContent = p.desc;
 
         modal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
@@ -244,12 +251,12 @@
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
         const first = focusable[0];
-        const last  = focusable[focusable.length - 1];
+        const last = focusable[focusable.length - 1];
 
         if (e.shiftKey) {
             if (document.activeElement === first) { e.preventDefault(); last.focus(); }
         } else {
-            if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+            if (document.activeElement === last) { e.preventDefault(); first.focus(); }
         }
     });
 
