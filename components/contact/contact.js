@@ -35,7 +35,7 @@
                 <input type="hidden" name="_captcha" value="false">
 
                 <!-- Redirección -->
-                <input type="hidden" name="_next" value="./gracias/gracias.html">
+                <input type="hidden" name="_next" value="/components/gracias/gracias.html">
 
                 <button class="form-btn" type="submit" disabled data-form-btn>
                     <ion-icon name="paper-plane"></ion-icon>
